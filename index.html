@@ -1,2 +1,771 @@
-Hello!
-hi!
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goyang2 — Design that feels premium</title>
+    <meta
+      name="description"
+      content="모던한 감성과 실용성을 모두 담은 럭셔리한 웹사이트 메인 페이지입니다."
+    />
+    <style>
+      :root {
+        --bg: #120f0d;
+        --bg-2: #1d1714;
+        --panel: rgba(26, 21, 18, 0.72);
+        --panel-strong: rgba(26, 21, 18, 0.92);
+        --card: rgba(255, 255, 255, 0.04);
+        --text: #f7f1ea;
+        --muted: #d0bca9;
+        --line: rgba(255, 255, 255, 0.08);
+        --primary: #d9a66a;
+        --primary-2: #b9815d;
+        --accent: #f2d4a8;
+        --success: #a7c5a0;
+        --shadow: rgba(0, 0, 0, 0.34);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(217, 166, 106, 0.18), transparent 30%),
+          radial-gradient(circle at top right, rgba(185, 129, 93, 0.12), transparent 25%),
+          linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(14px);
+        background: rgba(6, 19, 31, 0.45);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 78px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        display: grid;
+        place-items: center;
+        box-shadow: 0 12px 28px rgba(217, 166, 106, 0.28);
+        font-size: 0.9rem;
+        color: #1d120d;
+        font-weight: 900;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 22px;
+        border-radius: 14px;
+        border: 1px solid transparent;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #1d120d;
+        box-shadow: 0 14px 30px rgba(217, 166, 106, 0.25);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 72px 0 40px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--line);
+        color: var(--primary);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--success));
+        box-shadow: 0 0 14px rgba(52, 211, 153, 0.8);
+      }
+
+      h1 {
+        margin: 22px 0 18px;
+        font-size: clamp(2.8rem, 5vw, 5rem);
+        line-height: 0.96;
+        letter-spacing: -0.06em;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, var(--primary) 0%, #f2d4a8 48%, #d9a66a 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-copy p {
+        margin: 0;
+        max-width: 600px;
+        font-size: 1.08rem;
+        color: var(--muted);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        margin-top: 30px;
+      }
+
+      .mini-stats {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        color: var(--muted);
+      }
+
+      .mini-stats strong {
+        color: var(--text);
+        display: block;
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+      }
+
+      .visual-wrap {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .dashboard {
+        position: relative;
+        width: min(560px, 100%);
+        padding: 18px;
+        border-radius: 28px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        box-shadow: 0 26px 60px rgba(3, 8, 12, 0.55);
+      }
+
+      .window-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 8px 18px;
+      }
+
+      .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+
+      .dot.red { background: #fb7185; }
+      .dot.amber { background: #fbbf24; }
+      .dot.green { background: #34d399; }
+
+      .dashboard-screen {
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(7, 19, 29, 0.95), rgba(12, 26, 38, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 20px;
+      }
+
+      .screen-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+
+      .label {
+        color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(167, 197, 160, 0.08);
+        border: 1px solid rgba(167, 197, 160, 0.28);
+        color: #dfeed9;
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px 16px;
+      }
+
+      .stat-card strong {
+        display: block;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        margin-top: 8px;
+      }
+
+      .chart {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 10px;
+        align-items: end;
+        height: 150px;
+        padding: 18px 14px 10px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(125, 211, 252, 0.04), rgba(255, 255, 255, 0.01));
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .bar {
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(180deg, rgba(217, 166, 106, 0.95), rgba(185, 129, 93, 0.8));
+        box-shadow: 0 14px 26px rgba(217, 166, 106, 0.18);
+      }
+
+      .floating-card {
+        position: absolute;
+        right: -18px;
+        bottom: 26px;
+        background: rgba(10, 17, 26, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 14px 16px;
+        width: 220px;
+        box-shadow: 0 26px 50px rgba(0, 0, 0, 0.32);
+      }
+
+      .floating-card .small {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .floating-card .amt {
+        margin-top: 12px;
+        font-size: 1.8rem;
+        font-weight: 800;
+      }
+
+      .features,
+      .proof,
+      .cta-band {
+        padding: 48px 0;
+      }
+
+      .section-head {
+        margin-bottom: 24px;
+      }
+
+      .section-head h2 {
+        margin: 10px 0 0;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.04em;
+      }
+
+      .section-head p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        max-width: 600px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .feature-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 1.35rem;
+        background: linear-gradient(135deg, rgba(217, 166, 106, 0.2), rgba(185, 129, 93, 0.18));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .feature-card h3 {
+        margin: 20px 0 10px;
+        font-size: 1.4rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .testimonial {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        padding: 28px;
+      }
+
+      .quote {
+        font-size: 1.2rem;
+        color: var(--text);
+        margin: 0 0 20px;
+      }
+
+      .person {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: #07131d;
+        font-weight: 800;
+        display: grid;
+        place-items: center;
+      }
+
+      .person strong {
+        display: block;
+      }
+
+      .person span {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .results {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .result-box {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 22px;
+      }
+
+      .result-box strong {
+        font-size: clamp(2rem, 4vw, 2.7rem);
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .result-box span {
+        color: var(--muted);
+      }
+
+      .cta-band {
+        padding-bottom: 80px;
+      }
+
+      .cta-shell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 28px 30px;
+        border-radius: 28px;
+        background: linear-gradient(135deg, rgba(217, 166, 106, 0.12), rgba(185, 129, 93, 0.12));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .cta-shell h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.6rem, 2.5vw, 2.5rem);
+        letter-spacing: -0.04em;
+      }
+
+      .cta-shell p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 24px 0 52px;
+        color: var(--muted);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+      }
+
+      @media (max-width: 900px) {
+        .hero-inner,
+        .proof-grid,
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .cta-shell,
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .nav {
+          min-height: 68px;
+        }
+
+        .nav-actions .btn-secondary {
+          display: none;
+        }
+
+        .stats-grid,
+        .results {
+          grid-template-columns: 1fr;
+        }
+
+        .dashboard {
+          padding: 12px;
+        }
+
+        .floating-card {
+          position: static;
+          width: 100%;
+          margin-top: 14px;
+        }
+
+        .hero {
+          padding-top: 42px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="#top" class="brand" aria-label="GoYang home">
+          <span class="brand-mark">G</span>
+          <span>goyang2</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#features">기능</a>
+          <a href="#proof">성과</a>
+          <a href="#pricing">가격</a>
+          <a href="#contact">문의</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#contact" class="btn btn-secondary">로그인</a>
+          <a href="#contact" class="btn btn-primary">시작하기</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">creative studio</span>
+            <h1>
+              당신의 아이디어를<br />
+              <span class="gradient-text">아름답게</span> 보여주세요
+            </h1>
+            <p>
+              세련된 디자인, 빠른 성능, 그리고 의미 있는 사용자 경험을 한 번에 담아
+              브랜드를 더 매력적으로 성장시킵니다.
+            </p>
+
+            <div class="cta-row">
+              <a href="#contact" class="btn btn-primary">무료 상담 받기</a>
+              <a href="#features" class="btn btn-secondary">더 알아보기</a>
+            </div>
+
+            <div class="mini-stats" aria-label="Key metrics">
+              <div>
+                <strong>12k+</strong>
+                <span>누적 사용자</span>
+              </div>
+              <div>
+                <strong>4.9/5</strong>
+                <span>리뷰 평점</span>
+              </div>
+              <div>
+                <strong>3x</strong>
+                <span>전환 상승</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="visual-wrap">
+            <div class="dashboard" aria-label="Analytics dashboard preview">
+              <div class="window-bar" aria-hidden="true">
+                <span class="dot red"></span>
+                <span class="dot amber"></span>
+                <span class="dot green"></span>
+              </div>
+
+              <div class="dashboard-screen">
+                <div class="screen-head">
+                  <span class="label">Performance</span>
+                  <span class="pill">+24.8% this month</span>
+                </div>
+
+                <div class="stats-grid">
+                  <div class="stat-card">
+                    <span class="label">Visitors</span>
+                    <strong>28.4K</strong>
+                  </div>
+                  <div class="stat-card">
+                    <span class="label">Sales</span>
+                    <strong>$8.2K</strong>
+                  </div>
+                  <div class="stat-card">
+                    <span class="label">CTR</span>
+                    <strong>7.9%</strong>
+                  </div>
+                </div>
+
+                <div class="chart" aria-label="Bar chart">
+                  <span class="bar" style="height: 30%"></span>
+                  <span class="bar" style="height: 48%"></span>
+                  <span class="bar" style="height: 56%"></span>
+                  <span class="bar" style="height: 78%"></span>
+                  <span class="bar" style="height: 65%"></span>
+                  <span class="bar" style="height: 90%"></span>
+                  <span class="bar" style="height: 100%"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-card">
+              <div class="small">Conversion growth</div>
+              <div class="amt">+186%</div>
+              <div class="small">지난 90일 기준</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">why us</span>
+            <h2>브랜드가 빛날 수 있도록 설계합니다</h2>
+            <p>
+              감각적인 디자인과 현실적인 목표를 연결해, 사용자에게 기억되는 경험을 만듭니다.
+            </p>
+          </div>
+
+          <div class="cards-grid">
+            <article class="feature-card">
+              <div class="feature-icon">✦</div>
+              <h3>프리미엄 디자인</h3>
+              <p>
+                깔끔한 레이아웃과 깊이 있는 색감으로 브랜드의 가치를 한눈에 전달합니다.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>빠른 실행</h3>
+              <p>
+                불필요한 요소를 줄이고, 빠른 로딩과 부드러운 인터랙션으로 사용자 흐름을 유지합니다.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">◎</div>
+              <h3>변환 중심</h3>
+              <p>
+                방문자에게 행동을 이끌어내는 구조를 설계해 실제 비즈니스 성과로 이어집니다.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof" id="proof">
+        <div class="container proof-grid">
+          <div class="testimonial">
+            <p class="quote">
+              “기존보다 훨씬 세련되고 신뢰감 있는 브랜드 이미지가 완성됐습니다. 실제 문의량도
+              크게 늘었습니다.”
+            </p>
+            <div class="person">
+              <div class="avatar">J</div>
+              <div>
+                <strong>Jin Park</strong>
+                <span>Founder, Luna Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="results">
+            <div class="result-box">
+              <strong>3.2x</strong>
+              <span>리드 생성 증가</span>
+            </div>
+            <div class="result-box">
+              <strong>42%</strong>
+              <span>체류 시간 향상</span>
+            </div>
+            <div class="result-box">
+              <strong>86%</strong>
+              <span>재방문율 증가</span>
+            </div>
+            <div class="result-box">
+              <strong>2.1x</strong>
+              <span>전환율 증대</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band" id="pricing">
+        <div class="container">
+          <div class="cta-shell">
+            <div>
+              <h3>지금 바로, 첫인상을 바꿔보세요</h3>
+              <p>단순히 예쁜 디자인이 아니라, 성과를 만드는 웹사이트를 만듭니다.</p>
+            </div>
+            <a href="#contact" class="btn btn-primary">프로젝트 의뢰</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="container footer-inner">
+        <div class="brand">
+          <span class="brand-mark">G</span>
+          <span>goyang2</span>
+        </div>
+        <div>© 2026 goyang2. All rights reserved.</div>
+      </div>
+    </footer>
+  </body>
+</html>
+
