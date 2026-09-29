@@ -44,8 +44,11 @@ def split_css(source: str) -> list[str]:
 
 def main() -> None:
     CSS_DIR.mkdir(exist_ok=True)
-    source_path = next(CSS_DIR.glob("module-*.css"), CSS)
-    original_css = source_path.read_text()
+    module_paths = sorted(CSS_DIR.glob("module-*.css"))
+    if CSS.read_text().lstrip().startswith("@import") and module_paths:
+        original_css = "\n\n".join(path.read_text() for path in module_paths)
+    else:
+        original_css = CSS.read_text()
     for path in CSS_DIR.glob("module-*.css"):
         path.unlink()
 

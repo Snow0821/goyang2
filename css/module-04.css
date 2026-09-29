@@ -1,0 +1,28 @@
+@media (max-width: 560px) {
+  .nav {
+    min-height: 68px;
+  }
+
+  .nav-actions .btn-secondary {
+    display: none;
+  }
+
+  .stats-grid,
+  .results {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard {
+    padding: 12px;
+  }
+
+  .floating-card {
+    position: static;
+    width: 100%;
+    margin-top: 14px;
+  }
+
+  .hero {
+    padding-top: 42px;
+  }
+}

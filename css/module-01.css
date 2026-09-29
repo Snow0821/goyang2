@@ -98,10 +98,6 @@ img {
   color: var(--text);
 }
 
-.nav-links a.is-active {
-        color: var(--text);
-      }
-
 .nav-actions {
   display: flex;
   align-items: center;
@@ -176,4 +172,11 @@ h1 {
   font-size: clamp(2.8rem, 5vw, 5rem);
   line-height: 0.96;
   letter-spacing: -0.06em;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, #f2d4a8 48%, #d9a66a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
